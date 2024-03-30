@@ -1,0 +1,61 @@
+{
+  "name": "ch-music-player",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint-check": "npm run lint:markuplint && npm run lint:stylelint && npm run lint:eslint && npm run check:prettier",
+    "lint:markuplint": "markuplint \"./**/*.html\"",
+    "lint:stylelint": "stylelint \"./css/**/*.css\"",
+    "lint:eslint": "eslint \"./js/**/*.js\"",
+    "check:prettier": "prettier --check \"./**/*.{html,css,js,json}\"",
+    "fix": "npm run fix:markuplint && npm run fix:stylelint && npm run fix:eslint && npm run fix:prettier",
+    "fix:markuplint": "npm run lint:markuplint -- --fix",
+    "fix:stylelint": "npm run lint:stylelint -- --fix",
+    "fix:eslint": "npm run lint:eslint -- --fix",
+    "fix:prettier": "npm run check:prettier -- --write",
+    "prepare": "simple-git-hooks || echo 'Can not set git hooks'"
+  },
+  "devDependencies": {
+    "browserslist": "^4.23.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "lightningcss": "^1.24.1",
+    "markuplint": "^4.4.0",
+    "nano-staged": "^0.8.0",
+    "prettier": "^3.2.5",
+    "simple-git-hooks": "^2.11.1",
+    "stylelint": "^16.3.1",
+    "stylelint-config-recess-order": "^5.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4",
+    "vite": "^5.0.0"
+  },
+  "volta": {
+    "node": "20.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "./node_modules/.bin/nano-staged",
+    "prepare-commit-msg": "./.githooks/prepare-commit-msg \"$@\""
+  },
+  "nano-staged": {
+    "**/*.html": [
+      "markuplint --fix --problem-only",
+      "prettier --write --loglevel=error"
+    ],
+    "css/**/*.css": [
+      "stylelint --fix --quiet",
+      "prettier --write --loglevel=error"
+    ],
+    "js/**/*.js": [
+      "prettier --write --loglevel=error",
+      "eslint --fix --quiet"
+    ],
+    "**/*.json": [
+      "prettier --write --loglevel=error"
+    ]
+  }
+}
