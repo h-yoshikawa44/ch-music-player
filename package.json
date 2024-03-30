@@ -34,7 +34,8 @@
     "node": "20.11.1"
   },
   "simple-git-hooks": {
-    "pre-commit": "./node_modules/.bin/nano-staged"
+    "pre-commit": "./node_modules/.bin/nano-staged",
+    "prepare-commit-msg": "./.githooks/prepare-commit-msg \"$@\""
   },
   "nano-staged": {
     "**/*.html": [
