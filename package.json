@@ -7,10 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "lint-check": "npm run lint:markuplint && npm run check:prettier",
+    "lint:markuplint": "markuplint \"./**/*.html\"",
     "check:prettier": "prettier --check \"./**/*.{html,css,json}\"",
+    "fix": "npm run fix:markuplint && npm run fix:prettier",
+    "fix:markuplint": "npm run lint:markuplint -- --fix",
     "fix:prettier": "npm run check:prettier -- --write"
   },
   "devDependencies": {
+    "markuplint": "^4.4.0",
     "prettier": "^3.2.5",
     "vite": "^5.0.0"
   },
