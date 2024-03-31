@@ -3,18 +3,24 @@
 
 :root {
   --white: #e5e7eb;
-  --light-gray: #121826a6;
+  --light-gray: #868c96;
   --gray: #4d5562;
-  --black: #212936;
+  --black: rgb(33 41 54);
+  --black-alpha: rgb(33 41 54 / 80%);
   --pink: #c93b76;
+  --pink-alpha: rgb(209 59 118 / 40%);
 
   /* color map */
-  --background-color: var(--gray);
+  --background-color: var(--black);
+  --background-alpha-color: var(--black-alpha);
   --primary-color: var(--pink);
+  --primary-shadow-color: var(--pink-alpha);
   --primary-text-color: var(--white);
-  --secondary-text-color: var(--light-gray);
+  --secondary-text-color: var(--gray);
   --progress-background-color: var(--white);
   --progress-active-color: var(--pink);
+  --button-icon-color: var(--gray);
+  --button-icon-active-color: var(--white);
 
   /* font */
   --font-base: 'Inter', inter, system-ui, avenir, helvetica, arial, sans-serif;
@@ -25,9 +31,125 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--font-base);
+  background-image: url('/images/bg.jpg');
+  background-position: center;
+  background-size: cover;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-color);
-  background-image: url('/images/bg.jpg');
+}
+
+/* common
+-------------------- */
+
+.container {
+  max-width: 348px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+/* header
+-------------------- */
+
+/* ref: https://tailwindcss.com/docs/screen-readers */
+.header {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* main
+-------------------- */
+
+.main {
+  padding-top: 128px;
+  padding-bottom: 128px;
+}
+
+.music-player-card {
+  padding: 20px;
+  background: linear-gradient(
+    180deg,
+    var(--background-color) 0%,
+    var(--background-alpha-color) 100%
+  );
+  border-radius: 16px;
+}
+
+.music-player-card__img-wrapper {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.music-player-card__img {
+  border-radius: 16px;
+}
+
+.music-player-card__music-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.music-player-card__music-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-text-color);
+}
+
+.music-player-card__music-author {
+  font-size: 0.75rem;
+  color: var(--secondary-text-color);
+}
+
+.music-player-card__progress-erea {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.music-player-card__progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.625rem;
+  color: var(--secondary-text-color);
+}
+
+.music-player-card__progress {
+  width: 100%;
+}
+
+.music-player-card__action-erea {
+  display: flex;
+  column-gap: 12px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.music-player-card__action-button {
+  padding: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+.music-player-card__action-button--active {
+  background-color: var(--primary-color);
+  box-shadow: 0 5px 10px 0 var(--primary-shadow-color);
+}
+
+.music-player-card__action-button:hover {
+  border: 1px solid var(--primary-color);
 }
