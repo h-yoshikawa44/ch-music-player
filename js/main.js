@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const musicImg = document.getElementById('music-img');
   const musicName = document.getElementById('music-name');
   const musicAuthor = document.getElementById('music-author');
+  const musicTime = document.getElementById('music-time');
   const audio = document.getElementById('audio');
 
   const previousMusicButton = document.getElementById('previous-music-button');
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     musicName.textContent = musics[currentMusicIndex].name;
     musicAuthor.textContent = musics[currentMusicIndex].author;
     audio.src = musics[currentMusicIndex].src;
+    audio.load();
   };
 
   const playMusic = () => {
@@ -80,6 +82,18 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentMusic();
   };
 
+  const loadMusic = () => {
+    if (!(audio instanceof HTMLAudioElement)) return;
+
+    const baseDuration = Math.floor(audio.duration);
+    const minutes = Math.floor(baseDuration / 60)
+      .toString()
+      .padStart(2, '0');
+    const duration = (baseDuration % 60).toString().padStart(2, '0');
+    musicTime.textContent = `${minutes}:${duration}`;
+  };
+
+  audio.addEventListener('loadedmetadata', loadMusic);
   playButton.addEventListener('click', playMusic);
   pauseButton.addEventListener('click', pauseMusic);
   previousMusicButton.addEventListener('click', previousMusic);
