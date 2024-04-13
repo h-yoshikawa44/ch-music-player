@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
+    musicSlider.max = audio.duration;
+
     const baseDuration = Math.floor(audio.duration);
     const minutes = Math.floor(baseDuration / 60)
       .toString()
@@ -119,12 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const duration = (currentDurationBase % 60).toString().padStart(2, '0');
     currentMusicTime.textContent = `${minutes}:${duration}`;
 
-    // 初回は loadedmetadata の前に実行され、その時点では duration が NaN になるので抜ける
-    if (Number.isNaN(audio.duration)) return;
-
-    musicSlider.value = Math.floor(
-      (audio.currentTime / audio.duration) * 100,
-    ).toString();
+    musicSlider.value = audio.currentTime;
     // value にいれただけだと input が発火しないので手動発火してスライダーの背景色を更新
     musicSlider.dispatchEvent(new Event('input'));
   };
