@@ -15,10 +15,12 @@ const musics = [
     img: './images/cover-2.png',
   },
 ];
-const musicPlayMode = 'play';
-const musicPauseMode = 'pause';
+const MUSIC_PLAY_MODE = {
+  PLAY: 'play',
+  PAUSE: 'pause',
+};
 
-let currentMode = musicPauseMode;
+let currentMode = MUSIC_PLAY_MODE.PAUSE;
 let currentMusicIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.load();
 
     // 再生中に曲送りをした場合は、次の曲も自動再生する
-    if (currentMode === musicPlayMode) {
+    if (currentMode === MUSIC_PLAY_MODE.PLAY) {
       audio.play();
     }
   };
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
     audio.play();
-    currentMode = musicPlayMode;
+    currentMode = MUSIC_PLAY_MODE.PLAY;
     playButton.classList.add(hiddenClass);
     pauseButton.classList.remove(hiddenClass);
   };
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
     audio.pause();
-    currentMode = musicPauseMode;
+    currentMode = MUSIC_PLAY_MODE.PAUSE;
     pauseButton.classList.add(hiddenClass);
     playButton.classList.remove(hiddenClass);
   };
