@@ -10,11 +10,87 @@
       content="devChallenges.io - Music Player | by h-yoshikawa44"
     />
     <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&amp;display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div id="app">
-      <h1>Vite App</h1>
-    </div>
+    <header class="header">
+      <h1>Music Player</h1>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div class="music-player-card">
+          <p class="music-player-card__img-wrapper">
+            <img
+              class="music-player-card__img"
+              src="./images/cover-1.png"
+              alt="Lost in the City Lights - Cosmo Sheldrake"
+              width="308"
+              height="288"
+            />
+          </p>
+          <div class="music-player-card__music-info">
+            <p class="music-player-card__music-name">Lost in the City Lights</p>
+            <small class="music-player-card__music-author"
+              >Cosmo Sheldrake</small
+            >
+          </div>
+          <div class="music-player-card__progress-erea">
+            <label
+              class="music-player-card__progress-label"
+              for="music-progress"
+            >
+              <span>0:00</span>
+              <span>3:00</span>
+            </label>
+            <progress
+              id="music-progress"
+              class="music-player-card__progress"
+              max="100"
+              value="0"
+            >
+              0
+            </progress>
+          </div>
+          <div class="music-player-card__action-erea">
+            <button class="music-player-card__action-button">
+              <img
+                src="./images/previous.svg"
+                alt="previous music"
+                width="32"
+                height="32"
+              />
+            </button>
+            <button
+              class="music-player-card__action-button music-player-card__action-button--active"
+            >
+              <img src="./images/play.svg" alt="play" width="32" height="32" />
+              <img
+                class="hidden"
+                src="./images/pause.svg"
+                alt="pause"
+                width="32"
+                height="32"
+              />
+            </button>
+            <button class="music-player-card__action-button">
+              <img
+                src="./images/next.svg"
+                alt="next music"
+                width="32"
+                height="32"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
     <script type="module" src="/js/main.js"></script>
   </body>
 </html>
