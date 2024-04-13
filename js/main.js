@@ -104,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
     musicTime.textContent = `${minutes}:${duration}`;
   };
 
+  setCurrentMusic();
+
   audio.addEventListener('loadedmetadata', loadMusic);
   playButton.addEventListener('click', playMusic);
   pauseButton.addEventListener('click', pauseMusic);
