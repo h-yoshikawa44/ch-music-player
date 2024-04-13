@@ -1,4 +1,4 @@
-/* global document, Event, HTMLAudioElement, HTMLImageElement, HTMLInputElement */
+/* global document, HTMLAudioElement, HTMLImageElement, HTMLInputElement */
 
 const hiddenClass = 'hidden';
 const musics = [
@@ -19,6 +19,8 @@ const MUSIC_PLAY_MODE = {
   PLAY: 'play',
   PAUSE: 'pause',
 };
+const BASE_SLIDER_COLOR = '#e5e7eb';
+const ACTIVE_SLIDER_COLOR = '#c93b76';
 
 let currentMode = MUSIC_PLAY_MODE.PAUSE;
 let currentMusicIndex = 0;
@@ -36,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const playButton = document.getElementById('player-button');
   const pauseButton = document.getElementById('pause-button');
   const nextMusicButton = document.getElementById('next-music-button');
+
+  audio.preload = 'metadata';
 
   const setCurrentMusic = () => {
     if (
@@ -107,6 +111,24 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentMusic();
   };
 
+  // range の元のスタイルを CSS の appearance で無効化しているため、CSS だけでは領域ごとの背景色指定が難しい
+  // JavaScript で塗分けるようにする
+  const updateRangeGradient = () => {
+    if (!(musicSlider instanceof HTMLInputElement)) return;
+
+    const progress =
+      (Number(musicSlider.value) / Number(musicSlider.max)) * 100;
+    musicSlider.style.background = `linear-gradient(to right, ${ACTIVE_SLIDER_COLOR} ${progress}%, ${BASE_SLIDER_COLOR} ${progress}%)`;
+  };
+
+  const syncCurrentMusicTime = (currentTime) => {
+    const minutes = Math.floor(currentTime / 60)
+      .toString()
+      .padStart(2, '0');
+    const duration = (currentTime % 60).toString().padStart(2, '0');
+    currentMusicTime.textContent = `${minutes}:${duration}`;
+  };
+
   const syncSlider = () => {
     if (
       !(audio instanceof HTMLAudioElement) ||
@@ -114,22 +136,23 @@ document.addEventListener('DOMContentLoaded', () => {
     )
       return;
 
-    const currentDurationBase = Math.floor(audio.currentTime);
-    const minutes = Math.floor(currentDurationBase / 60)
-      .toString()
-      .padStart(2, '0');
-    const duration = (currentDurationBase % 60).toString().padStart(2, '0');
-    currentMusicTime.textContent = `${minutes}:${duration}`;
+    const currentDuration = Math.floor(audio.currentTime);
+    syncCurrentMusicTime(currentDuration);
 
     musicSlider.value = audio.currentTime;
-    // value にいれただけだと input が発火しないので手動発火してスライダーの背景色を更新
-    musicSlider.dispatchEvent(new Event('input'));
+    updateRangeGradient();
   };
 
   setCurrentMusic();
 
   audio.addEventListener('loadedmetadata', loadMusic);
   audio.addEventListener('timeupdate', syncSlider);
+
+  musicSlider.addEventListener('input', () => {
+    audio.currentTime = musicSlider.value;
+    syncCurrentMusicTime(musicSlider.value);
+    updateRangeGradient();
+  });
 
   playButton.addEventListener('click', playMusic);
   pauseButton.addEventListener('click', pauseMusic);
