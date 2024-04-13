@@ -3,6 +3,8 @@
 import '../css/reset.css';
 import '../css/style.css';
 
+import './sliderColor';
+
 const hiddenClass = 'hidden';
 const musics = [
   {
