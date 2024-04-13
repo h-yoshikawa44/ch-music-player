@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   musicSlider.addEventListener('input', () => {
     if (!(musicSlider instanceof HTMLInputElement)) return;
 
-    const progress = (musicSlider.value / musicSlider.max) * 100;
+    const progress =
+      (Number(musicSlider.value) / Number(musicSlider.max)) * 100;
     musicSlider.style.background = `linear-gradient(to right, ${ACTIVE_SLIDER_COLOR} ${progress}%, ${BASE_SLIDER_COLOR} ${progress}%)`;
   });
 });

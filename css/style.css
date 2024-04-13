@@ -145,17 +145,19 @@ body {
   width: 4px;
   height: 4px;
   appearance: none;
+  visibility: hidden;
   background-color: var(--progress-active-color);
   border-radius: 12px;
 }
 
 /* Firefox */
 .music-player-card__range::-moz-range-thumb {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
+  visibility: hidden;
   background-color: var(--progress-active-color);
   border: none;
-  border-radius: 50%;
+  border-radius: 12px;
 }
 
 .music-player-card__action-erea {

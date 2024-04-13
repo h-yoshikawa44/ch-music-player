@@ -1,4 +1,4 @@
-/* global document, HTMLAudioElement, HTMLImageElement */
+/* global document, Event, HTMLAudioElement, HTMLImageElement, HTMLInputElement */
 
 const hiddenClass = 'hidden';
 const musics = [
@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const musicImg = document.getElementById('music-img');
   const musicName = document.getElementById('music-name');
   const musicAuthor = document.getElementById('music-author');
+  const currentMusicTime = document.getElementById('current-music-time');
   const musicTime = document.getElementById('music-time');
+  const musicSlider = document.getElementById('music-slider');
   const audio = document.getElementById('audio');
 
   const previousMusicButton = document.getElementById('previous-music-button');
@@ -103,9 +105,35 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentMusic();
   };
 
+  const syncSlider = () => {
+    if (
+      !(audio instanceof HTMLAudioElement) ||
+      !(musicSlider instanceof HTMLInputElement)
+    )
+      return;
+
+    const currentDurationBase = Math.floor(audio.currentTime);
+    const minutes = Math.floor(currentDurationBase / 60)
+      .toString()
+      .padStart(2, '0');
+    const duration = (currentDurationBase % 60).toString().padStart(2, '0');
+    currentMusicTime.textContent = `${minutes}:${duration}`;
+
+    // 初回は loadedmetadata の前に実行され、その時点では duration が NaN になるので抜ける
+    if (Number.isNaN(audio.duration)) return;
+
+    musicSlider.value = Math.floor(
+      (audio.currentTime / audio.duration) * 100,
+    ).toString();
+    // value にいれただけだと input が発火しないので手動発火してスライダーの背景色を更新
+    musicSlider.dispatchEvent(new Event('input'));
+  };
+
   setCurrentMusic();
 
   audio.addEventListener('loadedmetadata', loadMusic);
+  audio.addEventListener('timeupdate', syncSlider);
+
   playButton.addEventListener('click', playMusic);
   pauseButton.addEventListener('click', pauseMusic);
   previousMusicButton.addEventListener('click', previousMusic);
