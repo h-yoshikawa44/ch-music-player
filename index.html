@@ -59,6 +59,10 @@
             </progress>
           </div>
           <div class="music-player-card__action-erea">
+            <audio
+              id="audio"
+              src="./musics/lost-in-city-lights-145038.mp3"
+            ></audio>
             <button class="music-player-card__action-button">
               <img
                 src="./images/previous.svg"
@@ -68,11 +72,16 @@
               />
             </button>
             <button
+              id="player-button"
               class="music-player-card__action-button music-player-card__action-button--active"
             >
               <img src="./images/play.svg" alt="play" width="32" height="32" />
+            </button>
+            <button
+              id="pause-button"
+              class="music-player-card__action-button music-player-card__action-button--active hidden"
+            >
               <img
-                class="hidden"
                 src="./images/pause.svg"
                 alt="pause"
                 width="32"
