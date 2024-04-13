@@ -54,6 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const loadMusic = () => {
+    if (!(audio instanceof HTMLAudioElement)) return;
+
+    const baseDuration = Math.floor(audio.duration);
+    const minutes = Math.floor(baseDuration / 60)
+      .toString()
+      .padStart(2, '0');
+    const duration = (baseDuration % 60).toString().padStart(2, '0');
+    musicTime.textContent = `${minutes}:${duration}`;
+  };
+
   const playMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
@@ -90,17 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
       currentMusicIndex = currentMusicIndex + 1;
     }
     setCurrentMusic();
-  };
-
-  const loadMusic = () => {
-    if (!(audio instanceof HTMLAudioElement)) return;
-
-    const baseDuration = Math.floor(audio.duration);
-    const minutes = Math.floor(baseDuration / 60)
-      .toString()
-      .padStart(2, '0');
-    const duration = (baseDuration % 60).toString().padStart(2, '0');
-    musicTime.textContent = `${minutes}:${duration}`;
   };
 
   setCurrentMusic();
