@@ -18,6 +18,10 @@ const musics = [
     img: './images/cover-2.png',
   },
 ];
+const musicPlayMode = 'play';
+const musicPauseMode = 'pause';
+
+let currentMode = musicPauseMode;
 let currentMusicIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,12 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
     musicAuthor.textContent = musics[currentMusicIndex].author;
     audio.src = musics[currentMusicIndex].src;
     audio.load();
+
+    // 再生中に曲送りをした場合は、次の曲も自動再生する
+    if (currentMode === musicPlayMode) {
+      audio.play();
+    }
   };
 
   const playMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
     audio.play();
+    currentMode = musicPlayMode;
     playButton.classList.add(hiddenClass);
     pauseButton.classList.remove(hiddenClass);
   };
@@ -58,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
     audio.pause();
+    currentMode = musicPauseMode;
     pauseButton.classList.add(hiddenClass);
     playButton.classList.remove(hiddenClass);
   };
