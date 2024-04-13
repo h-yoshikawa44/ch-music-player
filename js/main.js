@@ -1,14 +1,48 @@
-/* global document, HTMLAudioElement */
+/* global document, HTMLAudioElement, HTMLImageElement */
 
 import '../css/reset.css';
 import '../css/style.css';
 
 const hiddenClass = 'hidden';
+const musics = [
+  {
+    name: 'Lost in the City Lights',
+    author: 'Cosmo Sheldrake',
+    src: './musics/lost-in-city-lights-145038.mp3',
+    img: './images/cover-1.png',
+  },
+  {
+    name: 'Forest Lullaby',
+    author: 'Lesfm',
+    src: './musics/forest-lullaby-110624.mp3',
+    img: './images/cover-2.png',
+  },
+];
+let currentMusicIndex = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const musicImg = document.getElementById('music-img');
+  const musicName = document.getElementById('music-name');
+  const musicAuthor = document.getElementById('music-author');
   const audio = document.getElementById('audio');
+
+  const previousMusicButton = document.getElementById('previous-music-button');
   const playButton = document.getElementById('player-button');
   const pauseButton = document.getElementById('pause-button');
+  const nextMusicButton = document.getElementById('next-music-button');
+
+  const setCurrentMusic = () => {
+    if (
+      !(audio instanceof HTMLAudioElement) ||
+      !(musicImg instanceof HTMLImageElement)
+    )
+      return;
+
+    musicImg.src = musics[currentMusicIndex].img;
+    musicName.textContent = musics[currentMusicIndex].name;
+    musicAuthor.textContent = musics[currentMusicIndex].author;
+    audio.src = musics[currentMusicIndex].src;
+  };
 
   const playMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
@@ -26,6 +60,28 @@ document.addEventListener('DOMContentLoaded', () => {
     playButton.classList.remove(hiddenClass);
   };
 
+  const previousMusic = () => {
+    // 今の曲が最初の曲かどうか
+    if (currentMusicIndex === 0) {
+      currentMusicIndex = musics.length - 1;
+    } else {
+      currentMusicIndex = currentMusicIndex - 1;
+    }
+    setCurrentMusic();
+  };
+
+  const nextMusic = () => {
+    // 今の曲が最後の曲かどうか
+    if (currentMusicIndex === musics.length - 1) {
+      currentMusicIndex = 0;
+    } else {
+      currentMusicIndex = currentMusicIndex + 1;
+    }
+    setCurrentMusic();
+  };
+
   playButton.addEventListener('click', playMusic);
   pauseButton.addEventListener('click', pauseMusic);
+  previousMusicButton.addEventListener('click', previousMusic);
+  nextMusicButton.addEventListener('click', nextMusic);
 });
