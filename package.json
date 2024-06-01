@@ -17,6 +17,7 @@
     "fix:stylelint": "npm run lint:stylelint -- --fix",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run check:prettier -- --write",
+    "deploy": "npm run build && gh-pages -d dist",
     "prepare": "simple-git-hooks || echo 'Can not set git hooks'"
   },
   "devDependencies": {
@@ -57,5 +58,8 @@
     "**/*.json": [
       "prettier --write --loglevel=error"
     ]
+  },
+  "dependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
