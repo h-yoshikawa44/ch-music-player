@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   audio.preload = 'metadata';
 
+  /**
+   * 曲のセットアップ
+   */
   const setCurrentMusic = () => {
     if (
       !(audio instanceof HTMLAudioElement) ||
@@ -60,6 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /**
+   * 曲の読み込み
+   */
   const loadMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
@@ -73,6 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
     musicTime.textContent = `${minutes}:${duration}`;
   };
 
+  /**
+   * 曲再生
+   */
   const playMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
@@ -82,6 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
     pauseButton.classList.remove(hiddenClass);
   };
 
+  /**
+   * 曲停止
+   */
   const pauseMusic = () => {
     if (!(audio instanceof HTMLAudioElement)) return;
 
@@ -91,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     playButton.classList.remove(hiddenClass);
   };
 
+  /**
+   * 曲前送り
+   */
   const previousMusic = () => {
     // 今の曲が最初の曲かどうか
     if (currentMusicIndex === 0) {
@@ -101,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentMusic();
   };
 
+  /**
+   * 曲後送り
+   */
   const nextMusic = () => {
     // 今の曲が最後の曲かどうか
     if (currentMusicIndex === musics.length - 1) {
@@ -111,8 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setCurrentMusic();
   };
 
-  // range の元のスタイルを CSS の appearance で無効化しているため、CSS だけでは領域ごとの背景色指定が難しい
-  // JavaScript で塗分けるようにする
+  /**
+   * input - range 要素の色更新
+   *
+   * range の元のスタイルを CSS の appearance で無効化しているため、CSS だけでは領域ごとの背景色指定が難しい。
+   * JavaScript で塗分けるようにする。
+   */
   const updateRangeGradient = () => {
     if (!(musicSlider instanceof HTMLInputElement)) return;
 
@@ -121,6 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
     musicSlider.style.background = `linear-gradient(to right, ${ACTIVE_SLIDER_COLOR} ${progress}%, ${BASE_SLIDER_COLOR} ${progress}%)`;
   };
 
+  /**
+   * 曲の再生位置の秒数に応じて、分・秒の表示を同期
+   *
+   * @param {number} currentTime 今の曲の再生位置の秒数
+   */
   const syncCurrentMusicTime = (currentTime) => {
     const minutes = Math.floor(currentTime / 60)
       .toString()
@@ -129,7 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
     currentMusicTime.textContent = `${minutes}:${duration}`;
   };
 
-  const syncSlider = () => {
+  /**
+   * 曲の再生位置を range に同期
+   */
+  const syncRange = () => {
     if (
       !(audio instanceof HTMLAudioElement) ||
       !(musicSlider instanceof HTMLInputElement)
@@ -146,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setCurrentMusic();
 
   audio.addEventListener('loadedmetadata', loadMusic);
-  audio.addEventListener('timeupdate', syncSlider);
+  audio.addEventListener('timeupdate', syncRange);
   audio.addEventListener('ended', nextMusic);
 
   musicSlider.addEventListener('input', () => {
