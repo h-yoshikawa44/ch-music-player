@@ -98,7 +98,7 @@ body {
 .music-player-card__music-info {
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
+  margin-top: 12px;
   text-align: center;
 }
 
@@ -109,6 +109,7 @@ body {
 }
 
 .music-player-card__music-author {
+  margin-top: 4px;
   font-size: 0.75rem;
   color: var(--secondary-text-color);
 }
@@ -165,7 +166,7 @@ body {
   display: flex;
   column-gap: 12px;
   justify-content: center;
-  margin-top: 28px;
+  margin-top: 36px;
 }
 
 .music-player-card__action-button {
