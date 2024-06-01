@@ -137,8 +137,6 @@ body {
   cursor: pointer;
   border-radius: 12px;
   outline: none;
-
-  /* 仮 */
   box-shadow: 0 0 10px 2px var(--primary-shadow-color);
 }
 
