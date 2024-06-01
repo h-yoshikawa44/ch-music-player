@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   audio.addEventListener('loadedmetadata', loadMusic);
   audio.addEventListener('timeupdate', syncSlider);
+  audio.addEventListener('ended', nextMusic);
 
   musicSlider.addEventListener('input', () => {
     audio.currentTime = musicSlider.value;
