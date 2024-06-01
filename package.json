@@ -17,12 +17,14 @@
     "fix:stylelint": "npm run lint:stylelint -- --fix",
     "fix:eslint": "npm run lint:eslint -- --fix",
     "fix:prettier": "npm run check:prettier -- --write",
+    "deploy": "npm run build && gh-pages -d dist",
     "prepare": "simple-git-hooks || echo 'Can not set git hooks'"
   },
   "devDependencies": {
     "browserslist": "^4.23.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
+    "gh-pages": "^6.1.1",
     "lightningcss": "^1.24.1",
     "markuplint": "^4.4.0",
     "nano-staged": "^0.8.0",

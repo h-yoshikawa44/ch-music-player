@@ -8,14 +8,14 @@
 
 <div align="center">
   <h3>
-    <!-- <a href="https://h-yoshikawa44.github.io/ch-music-player/">
+    <a href="https://h-yoshikawa44.github.io/ch-music-player/">
       Demo
     </a>
-    <span> | </span> -->
-    <!-- <a href="">
+    <span> | </span>
+    <a href="https://devchallenges.io/solution/17324">
       Solution
     </a>
-    <span> | </span> -->
+    <span> | </span>
     <a href="https://devchallenges.io/challenge/music-player">
       Challenge
     </a>
@@ -43,11 +43,11 @@
 
 ### Desktop
 
-（スクショを貼る）
+![overview - desktop](./screenshots/desktop.png)
 
 ### Mobile
 
-（スクショを貼る）
+<img src="./screenshots/mobile.png" alt="overview - mobile" width="50%">
 
 ### Built With
 
@@ -57,6 +57,7 @@ Base
 
 - [HTML](https://developer.mozilla.org/ja/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/ja/docs/Web/CSS)
+- [JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript)
 - [Node.js](https://nodejs.org/)：20.11.1
 - [Vite](https://ja.vitejs.dev/)：5.2.7
 
@@ -70,15 +71,15 @@ Other major libraries
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenge/music-player) was to build an application to complete the given user stories.
 
-- [ ] Create a music player app that matches the given design.
-- [ ] Use HTML to create the basic structure.
-- [ ] Add image, title, author, progress bar, player button,... according to the design.
-- [ ] Use vanilla JavaScript to add interactivity.
-- [ ] Users should be able to play and stop the current song.
-- [ ] Users should be able to go to next and previous songs.
-- [ ] Users should be able to change play time with the progress bar.
-- [ ] The page should be responsive on different screen sizes.
-- [ ] Deploy the solution and submit Repository URL and Demo URL.
+- [x] Create a music player app that matches the given design.
+- [x] Use HTML to create the basic structure.
+- [x] Add image, title, author, progress bar, player button,... according to the design.
+- [x] Use vanilla JavaScript to add interactivity.
+- [x] Users should be able to play and stop the current song.
+- [x] Users should be able to go to next and previous songs.
+- [x] Users should be able to change play time with the progress bar.
+- [x] The page should be responsive on different screen sizes.
+- [x] Deploy the solution and submit Repository URL and Demo URL.
 
 ## How To Use
 
@@ -101,13 +102,21 @@ npm run dev
 
 ## learned/improved
 
-（後で書く）
+The music player functionality could be implemented more cleanly if implemented in a class...
+
+- Basic usage of web audio api.
+- How to customize input type=range to create a music playback seek bar mechanism.
+  - The system of updating the color of the seek bar with JavaScript according to the song playback position was particularly impressive.
 
 ## Acknowledgements
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For exmpale -->
 
-（後で書く）
+- [MDN - HTMLMediaElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLMediaElement)
+- [MDN - String.prototype.padStart()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/padStart)
+- [input type="range"](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/range)
+- [audio タグ（要素）を Javascript を使って操作](https://www.webdesignleaves.com/pr/jquery/javascript-audio.html)
+- [input type=range レンジスライダーをカスタマイズ](https://www.webdesignleaves.com/pr/css/input-range-style.html)
 
 ## Contact
 

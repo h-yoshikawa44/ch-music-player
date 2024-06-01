@@ -1,18 +1,23 @@
 /* global document, HTMLAudioElement, HTMLImageElement, HTMLInputElement */
 
+import LostInTheCityLightsImg from '/images/cover-1.png';
+import LostInTheCityLightsSrc from '/musics/lost-in-city-lights-145038.mp3';
+import ForestLullabyImg from '/images/cover-2.png';
+import ForestLullabySrc from '/musics/forest-lullaby-110624.mp3';
+
 const hiddenClass = 'hidden';
 const musics = [
   {
     name: 'Lost in the City Lights',
     author: 'Cosmo Sheldrake',
-    src: './musics/lost-in-city-lights-145038.mp3',
-    img: './images/cover-1.png',
+    src: LostInTheCityLightsSrc,
+    img: LostInTheCityLightsImg,
   },
   {
     name: 'Forest Lullaby',
     author: 'Lesfm',
-    src: './musics/forest-lullaby-110624.mp3',
-    img: './images/cover-2.png',
+    src: ForestLullabySrc,
+    img: ForestLullabyImg,
   },
 ];
 const MUSIC_PLAY_MODE = {
