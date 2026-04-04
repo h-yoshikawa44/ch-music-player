@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !(audio instanceof HTMLAudioElement) ||
       !(musicImg instanceof HTMLImageElement)
-    )
+    ) {
       return;
+    }
 
     musicImg.src = musics[currentMusicIndex].img;
     musicName.textContent = musics[currentMusicIndex].name;
@@ -168,8 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       !(audio instanceof HTMLAudioElement) ||
       !(musicSlider instanceof HTMLInputElement)
-    )
+    ) {
       return;
+    }
 
     const currentDuration = Math.floor(audio.currentTime);
     syncCurrentMusicTime(currentDuration);
