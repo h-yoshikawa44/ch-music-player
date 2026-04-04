@@ -21,11 +21,11 @@
     "prepare": "simple-git-hooks || echo 'Can not set git hooks'"
   },
   "devDependencies": {
-    "browserslist": "^4.23.0",
+    "browserslist": "^4.28.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "gh-pages": "^6.1.1",
-    "lightningcss": "^1.24.1",
+    "lightningcss": "^1.32.0",
     "markuplint": "^4.4.0",
     "nano-staged": "^0.8.0",
     "prettier": "^3.2.5",
