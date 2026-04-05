@@ -63,9 +63,9 @@ body {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+  clip-path: inset(50%);
 }
 
 /* main
@@ -135,26 +135,26 @@ body {
   margin: 0;
   appearance: none;
   cursor: pointer;
-  border-radius: 12px;
   outline: none;
+  border-radius: 12px;
   box-shadow: 0 0 10px 2px var(--primary-shadow-color);
 }
 
 /* Chrome, Safari, Opera, Edge Chromium */
 .music-player-card__range::-webkit-slider-thumb {
+  visibility: hidden;
   width: 4px;
   height: 4px;
   appearance: none;
-  visibility: hidden;
   background-color: var(--progress-active-color);
   border-radius: 12px;
 }
 
 /* Firefox */
 .music-player-card__range::-moz-range-thumb {
+  visibility: hidden;
   width: 4px;
   height: 4px;
-  visibility: hidden;
   background-color: var(--progress-active-color);
   border: none;
   border-radius: 12px;
